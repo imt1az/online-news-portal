@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\MultiImg;
 use App\Models\NewsPost;
 use App\Models\SubCategory;
 use App\Models\User;
@@ -32,7 +33,7 @@ class NewsPostController extends Controller
         Image::make($image)->resize(784, 436)->save('upload/news/' . $name_gen);
         $save_url = 'upload/news/' . $name_gen;
 
-        NewsPost::insert([
+        $newsId = NewsPost::insertGetId([
 
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
@@ -54,6 +55,23 @@ class NewsPostController extends Controller
             'created_at' => Carbon::now(),
 
         ]);
+
+        $images = $request->file('multi_img');
+        foreach ($images as $img) {
+            $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+            Image::make($img)->resize(784, 436)->save('upload/news/multi-image/' . $make_name);
+            $uploadPath = 'upload/news/multi-image/' . $make_name;
+
+            MultiImg::insert([
+
+                'news_id' => $newsId,
+                'photo_name' => $uploadPath,
+                'created_at' => Carbon::now(),
+
+            ]);
+        }
+
+        ////////// End Multiple Image Upload Start ///////////
         $notification = array(
             'message' => 'News Added Successfull',
             'alert-type' => 'success'
@@ -64,11 +82,12 @@ class NewsPostController extends Controller
 
     public function EditNews($id)
     {
+        $multiImgs = MultiImg::where('news_id', $id)->get();
         $categories = Category::latest()->get();
         $subcategories = SubCategory::latest()->get();
         $adminUser = User::where('role', 'admin')->latest()->get();
         $news = NewsPost::findOrFail($id);
-        return view('backend.news.edit_news', compact('news', 'categories', 'subcategories', 'adminUser'));
+        return view('backend.news.edit_news', compact('news', 'categories', 'subcategories', 'adminUser', 'multiImgs'));
     }
 
     public function UpdateNews(Request $request)
@@ -109,7 +128,8 @@ class NewsPostController extends Controller
             );
 
             return redirect()->route('all.news.post')->with($notification);
-        } else {
+        } 
+        else {
             NewsPost::findOrFail($id)->update([
 
                 'category_id' => $request->category_id,
@@ -132,6 +152,23 @@ class NewsPostController extends Controller
                 'updated_at' => Carbon::now(),
 
             ]);
+
+            if($request->file('multi_img')){
+                foreach ($request->file('multi_img') as $img) {
+                    $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+                    Image::make($img)->resize(784, 436)->save('upload/news/multi-image/' . $make_name);
+                    $uploadPath = 'upload/news/multi-image/' . $make_name;
+        
+                    MultiImg::insert([
+        
+                        'news_id' => $id,
+                        'photo_name' => $uploadPath,
+                        'created_at' => Carbon::now(),
+        
+                    ]);
+                }
+            }
+
             $notification = array(
                 'message' => 'News Updated without image Successfull',
                 'alert-type' => 'success'
@@ -156,6 +193,45 @@ class NewsPostController extends Controller
         return redirect()->back()->with($notification);
     }
 
+
+    // Multi Image Delete 
+    public function MultiImageDelete($id)
+    {
+        $oldImg = MultiImg::findOrFail($id);
+        unlink($oldImg->photo_name);
+        MultiImg::findOrFail($id)->delete();
+        $notification = array(
+            'message' => 'Multiple Photo Deleted  Successfully',
+            'alert-type' => 'danger'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function MultiImageUpdate(Request $request)
+    {
+        $imgs = $request->multi_img;
+        foreach ($imgs as $id => $img) {
+            $imgDel = MultiImg::findOrFail($id);
+            unlink($imgDel->photo_name);
+            $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+            Image::make($img)->resize(784, 436)->save('upload/news/multi-image/' . $make_name);
+            $uploadPath = 'upload/news/multi-image/' . $make_name;
+
+            MultiImg::where('id', $id)->update([
+                'photo_name' => $uploadPath,
+                'updated_at' => Carbon::now(),
+
+            ]);
+        }
+        $notification = array(
+            'message' => 'Multiple Photo Updated  Successfully',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
     public function InactiveNews($id)
     {
         NewsPost::findOrFail($id)->update(['status' => 0]);
@@ -168,8 +244,9 @@ class NewsPostController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function ActiveNews($id){
-        NewsPost::findOrFail($id)->update(['status'=>1]);
+    public function ActiveNews($id)
+    {
+        NewsPost::findOrFail($id)->update(['status' => 1]);
         $notification = array(
             'message' => 'News Is Active',
             'alert-type' => 'info'
@@ -177,5 +254,4 @@ class NewsPostController extends Controller
 
         return redirect()->back()->with($notification);
     }
-
 }

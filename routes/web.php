@@ -94,6 +94,10 @@ Route::get('/admin/logout/page',[AdminController::class,'AdminLogoutPage'])->nam
         Route::post('/update/news','UpdateNews')->name('update.news.post');
         Route::get('/inactive/news/{id}','InactiveNews')->name('inactive.news.post');
         Route::get('/active/news/{id}','ActiveNews')->name('active.news.post');
+
+        // Multi Image Operation
+        Route::get('/multiImg/delete/{id}','MultiImageDelete')->name('news.multiImg.delete');
+        Route::post('/multiImg/update','MultiImageUpdate')->name('update-multi-image');
         
      });
 

@@ -19,24 +19,23 @@
                                 <i class="la la-home"> </i><a href=" "> HOME </a>
                             </div>
                             <div class="single-cats">
-                                <i class="la la-bars"></i> <a href=" " rel="category tag">{{ $news['category']['category_name'] }}</a> ,
-                                @if ($news->subcategory_id == NULL)
+                                <i class="la la-bars"></i> <a href=" "
+                                    rel="category tag">{{ $news['category']['category_name'] }}</a> ,
+                                @if ($news->subcategory_id == null)
                                     <a href="" rel="category tag"> </a>
-                                
-                                    
                                 @else
-                                <a href="" rel="category tag">{{ $news['subcategory']['subcategory_name'] }}</a>
+                                    <a href="" rel="category tag">{{ $news['subcategory']['subcategory_name'] }}</a>
                                 @endif
-                                
+
                             </div>
                         </div>
                         <h5 class="single-page-subTitle">
                             {{ $news->news_title }}</h5>
-                       
+
                         <div class="row g-2">
-                            
+
                             <div class="col-lg-11 col-md-10">
-                                
+
                                 <div class="viwe-count">
                                     <ul>
                                         <li><i class="la la-clock-o"></i> Updated
@@ -50,12 +49,46 @@
                                 </div>
                             </div>
                         </div>
+                        @php
+                            $multiImg = App\Models\MultiImg::where('news_id', $news->id)
+                                ->orderBy('id', 'ASC')
+                                ->get();
+                        @endphp
+                        <div class="homeGallery owl-carousel owl-loaded owl-drag">
 
-                        <div class="single-image">
-                            <a href=" "><img class="lazyload" src="{{ asset($news->image) }}"></a>
-                            <h2 class="single-caption2">
-                                {{ $news->news_title }}
-                            </h2>
+
+
+
+
+
+                            <div class="owl-stage-outer">
+                                <div class="owl-stage"
+                                    style="transform: translate3d(-4764px, 0px, 0px); transition: all 1s ease 0s; width: 5558px;">
+
+
+                                    @foreach ($multiImg as $item)
+                                        <div class="owl-item active" style="width: 790px; margin-right: 10px;">
+                                            <div class="item">
+                                                <div class="photo">
+                                                    <a class="themeGallery" href="assets/images/6786.jpg">
+                                                        <img src="{{ asset($item->photo_name) }}" alt="PHOTO"></a>
+                                                    <h3 class="photoCaption">
+                                                        <a href=" ">{{ $news->news_title }}</a>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i
+                                        class="las la-angle-left"></i></button><button type="button" role="presentation"
+                                    class="owl-next disabled"><i class="las la-angle-right"></i></button></div>
+                            <div class="owl-dots disabled"></div>
                         </div>
 
                         <div class="single-page-add2">
@@ -110,8 +143,7 @@
                                     <span> COMMENTS </span>
                                 </h6>
                                 <div class="author-image2">
-                                    <img alt="" src="assets/images/lazy.jpg
-" class="avatar avatar-96 photo"
+                                    <img alt="" src="assets/images/lazy.jpg" class="avatar avatar-96 photo"
                                         height="96" width="96" loading="lazy">
                                 </div>
                                 <div class="authorContent">

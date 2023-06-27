@@ -62,55 +62,64 @@
 
                             </div>
                             <div class="col-lg-5 col-md-5">
-                              @php
-                                  $sectionThree = App\Models\NewsPost::where('status',1)->where('first_section_three',1)->limit(3)->get();
-                              @endphp
+                                @php
+                                    $sectionThree = App\Models\NewsPost::where('status', 1)
+                                        ->where('first_section_three', 1)
+                                        ->limit(3)
+                                        ->get();
+                                @endphp
 
-                              @foreach ($sectionThree as $item)
-                              <div class="secOne-smallItem">
-                                <div class="secOne-smallImg">
-                                    <a href=" "><img class="lazyload" src="{{ asset($item->image) }}"></a>
-                                    <h5 class="secOne_smallTitle" style="padding: 1.5px">
-                                        <a href=" ">{{ $item->news_title }}</a>
-                                    </h5>
-                                </div>
-                            </div>
-                              @endforeach
-                      
-                               
-                               
+                                @foreach ($sectionThree as $item)
+                                    <div class="secOne-smallItem">
+                                        <div class="secOne-smallImg">
+                                            <a href=" "><img class="lazyload" src="{{ asset($item->image) }}"></a>
+                                            <h5 class="secOne_smallTitle" style="padding: 1.5px">
+                                                <a href=" ">{{ $item->news_title }}</a>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+
+
 
                             </div>
                         </div>
                         <div class="sec-one-item2">
                             <div class="row">
                                 @php
-                                $sectionNine = App\Models\NewsPost::where('status',1)->where('first_section_nine',1)->limit(9)->get();
+                                    $sectionNine = App\Models\NewsPost::where('status', 1)
+                                        ->where('first_section_nine', 1)
+                                        ->limit(9)
+                                        ->get();
                                     
                                 @endphp
 
                                 @foreach ($sectionNine as $item)
-                                <div class="themesBazar-3 themesBazar-m2">
-                                    <div class="sec-one-wrpp2">
-                                        <div class="secOne-news">
-                                            <div class="secOne-image2">
-                                                <a href="{{ url('news/details/'.$item->id.'/'.$item->news_title_slug) }}"><img class="lazyload" src="{{ asset($item->image) }}"></a>
+                                    <div class="themesBazar-3 themesBazar-m2">
+                                        <div class="sec-one-wrpp2">
+                                            <div class="secOne-news">
+                                                <div class="secOne-image2">
+                                                    <a
+                                                        href="{{ url('news/details/' . $item->id . '/' . $item->news_title_slug) }}"><img
+                                                            class="lazyload" src="{{ asset($item->image) }}"></a>
+                                                </div>
+                                                <h4 class="secOne-title2">
+                                                    <a
+                                                        href="{{ url('news/details/' . $item->id . '/' . $item->news_title_slug) }}">{{ $item->news_title }}</a>
+                                                </h4>
                                             </div>
-                                            <h4 class="secOne-title2">
-                                                <a href="{{ url('news/details/'.$item->id.'/'.$item->news_title_slug) }}">{{ $item->news_title }}</a>
-                                            </h4>
-                                        </div>
-                                        <div class="cat-meta">
-                                            <a href=" "> <i class="lar la-newspaper"></i>
-                                              {{ $item->created_at->format('M d Y') }}
-                                            </a>
+                                            <div class="cat-meta">
+                                                <a href=" "> <i class="lar la-newspaper"></i>
+                                                    {{ $item->created_at->format('M d Y') }}
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 @endforeach
 
-                                
-                                
+
+
                             </div>
                         </div>
                     </div>
@@ -122,11 +131,11 @@
                             </div>
                             <div class="popup-wrpp">
                                 <div class="live_image">
-                                    <img width="700" height="400" src="{{asset('frontend/assets/images/lazy.jpg') }}"
+                                    <img width="700" height="400" src="{{ asset('frontend/assets/images/lazy.jpg') }}"
                                         class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt=""
                                         loading="lazy">
-                                    <div data-mfp-src="#mymodal" class="live-icon modal-live"> <i
-                                            class="las la-play"></i> </div>
+                                    <div data-mfp-src="#mymodal" class="live-icon modal-live"> <i class="las la-play"></i>
+                                    </div>
                                 </div>
                                 <div class="live-popup">
                                     <div id="mymodal" class="mfp-hide" role="dialog" aria-labelledby="modal-titles"
@@ -1032,8 +1041,7 @@
                                     <div class="owl-item" style="width: 289.5px; margin-right: 10px;">
                                         <div class="secFour-wrpp ">
                                             <div class="secFour-image">
-                                                <a href=" "><img class="lazyload"
-                                                        src="assets/images/lazy.jpg"></a>
+                                                <a href=" "><img class="lazyload" src="assets/images/lazy.jpg"></a>
                                                 <h5 class="secFour-title">
                                                     <a href=" ">How Bollywood movies recover money when</a>
                                                 </h5>
@@ -1043,8 +1051,7 @@
                                     <div class="owl-item" style="width: 289.5px; margin-right: 10px;">
                                         <div class="secFour-wrpp ">
                                             <div class="secFour-image">
-                                                <a href=" "><img class="lazyload"
-                                                        src="assets/images/lazy.jpg"></a>
+                                                <a href=" "><img class="lazyload" src="assets/images/lazy.jpg"></a>
                                                 <h5 class="secFour-title">
                                                     <a href=" ">How Bollywood movies recover money when</a>
                                                 </h5>
@@ -1054,8 +1061,7 @@
                                     <div class="owl-item" style="width: 289.5px; margin-right: 10px;">
                                         <div class="secFour-wrpp ">
                                             <div class="secFour-image">
-                                                <a href=" "><img class="lazyload"
-                                                        src="assets/images/lazy.jpg"></a>
+                                                <a href=" "><img class="lazyload" src="assets/images/lazy.jpg"></a>
                                                 <h5 class="secFour-title">
                                                     <a href=" ">How Bollywood movies recover money when</a>
                                                 </h5>
@@ -1065,8 +1071,7 @@
                                     <div class="owl-item" style="width: 289.5px; margin-right: 10px;">
                                         <div class="secFour-wrpp ">
                                             <div class="secFour-image">
-                                                <a href=" "><img class="lazyload"
-                                                        src="assets/images/lazy.jpg"></a>
+                                                <a href=" "><img class="lazyload" src="assets/images/lazy.jpg"></a>
                                                 <h5 class="secFour-title">
                                                     <a href=" ">How Bollywood movies recover money when</a>
                                                 </h5>
@@ -1076,8 +1081,7 @@
                                     <div class="owl-item active" style="width: 289.5px; margin-right: 10px;">
                                         <div class="secFour-wrpp ">
                                             <div class="secFour-image">
-                                                <a href=" "><img class="lazyload"
-                                                        src="assets/images/lazy.jpg"></a>
+                                                <a href=" "><img class="lazyload" src="assets/images/lazy.jpg"></a>
                                                 <h5 class="secFour-title">
                                                     <a href=" ">How Bollywood movies recover money when</a>
                                                 </h5>
@@ -1087,8 +1091,7 @@
                                     <div class="owl-item cloned active" style="width: 289.5px; margin-right: 10px;">
                                         <div class="secFour-wrpp ">
                                             <div class="secFour-image">
-                                                <a href=" "><img class="lazyload"
-                                                        src="assets/images/lazy.jpg"></a>
+                                                <a href=" "><img class="lazyload" src="assets/images/lazy.jpg"></a>
                                                 <h5 class="secFour-title">
                                                     <a href=" ">How Bollywood movies recover money when</a>
                                                 </h5>
@@ -1098,8 +1101,7 @@
                                     <div class="owl-item cloned active" style="width: 289.5px; margin-right: 10px;">
                                         <div class="secFour-wrpp ">
                                             <div class="secFour-image">
-                                                <a href=" "><img class="lazyload"
-                                                        src="assets/images/lazy.jpg"></a>
+                                                <a href=" "><img class="lazyload" src="assets/images/lazy.jpg"></a>
                                                 <h5 class="secFour-title">
                                                     <a href=" ">How Bollywood movies recover money when</a>
                                                 </h5>
@@ -1109,8 +1111,7 @@
                                     <div class="owl-item cloned active" style="width: 289.5px; margin-right: 10px;">
                                         <div class="secFour-wrpp ">
                                             <div class="secFour-image">
-                                                <a href=" "><img class="lazyload"
-                                                        src="assets/images/lazy.jpg"></a>
+                                                <a href=" "><img class="lazyload" src="assets/images/lazy.jpg"></a>
                                                 <h5 class="secFour-title">
                                                     <a href=" ">How Bollywood movies recover money when</a>
                                                 </h5>
@@ -1120,8 +1121,7 @@
                                     <div class="owl-item cloned" style="width: 289.5px; margin-right: 10px;">
                                         <div class="secFour-wrpp ">
                                             <div class="secFour-image">
-                                                <a href=" "><img class="lazyload"
-                                                        src="assets/images/lazy.jpg"></a>
+                                                <a href=" "><img class="lazyload" src="assets/images/lazy.jpg"></a>
                                                 <h5 class="secFour-title">
                                                     <a href=" ">How Bollywood movies recover money when</a>
                                                 </h5>
@@ -1130,9 +1130,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="owl-nav disabled"><button type="button" role="presentation"
-                                    class="owl-prev"><i class="las la-angle-left"></i></button><button type="button"
-                                    role="presentation" class="owl-next"><i class="las la-angle-right"></i></button>
+                            <div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><i
+                                        class="las la-angle-left"></i></button><button type="button" role="presentation"
+                                    class="owl-next"><i class="las la-angle-right"></i></button>
                             </div>
                             <div class="owl-dots"><button role="button" class="owl-dot"><span></span></button><button
                                     role="button" class="owl-dot active"><span></span></button></div>
@@ -1687,8 +1687,8 @@
                                     <div class="owl-item" style="width: 784px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="photo">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                                 <h3 class="photoCaption">
                                                     <a href=" ">PHOTO GALLARY 6 </a>
                                                 </h3>
@@ -1698,8 +1698,8 @@
                                     <div class="owl-item" style="width: 784px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="photo">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                                 <h3 class="photoCaption">
                                                     <a href=" ">PHOTO GALLARY 6 </a>
                                                 </h3>
@@ -1709,8 +1709,8 @@
                                     <div class="owl-item" style="width: 784px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="photo">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                                 <h3 class="photoCaption">
                                                     <a href=" ">PHOTO GALLARY 5 </a>
                                                 </h3>
@@ -1720,8 +1720,8 @@
                                     <div class="owl-item" style="width: 784px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="photo">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                                 <h3 class="photoCaption">
                                                     <a href=" ">PHOTO GALLARY 4 </a>
                                                 </h3>
@@ -1731,8 +1731,8 @@
                                     <div class="owl-item" style="width: 784px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="photo">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                                 <h3 class="photoCaption">
                                                     <a href=" ">PHOTO GALLARY 3 </a>
                                                 </h3>
@@ -1742,8 +1742,8 @@
                                     <div class="owl-item" style="width: 784px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="photo">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                                 <h3 class="photoCaption">
                                                     <a href=" ">PHOTO GALLARY 2 </a>
                                                 </h3>
@@ -1753,8 +1753,8 @@
                                     <div class="owl-item active" style="width: 784px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="photo">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                                 <h3 class="photoCaption">
                                                     <a href=" ">PHOTO GALLARY 1 </a>
                                                 </h3>
@@ -1783,152 +1783,152 @@
                                     <div class="owl-item cloned" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item cloned" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item cloned" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item cloned" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item cloned active" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item cloned active" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item active center" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item active" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item active" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item active" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item cloned" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item cloned" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item cloned" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item cloned" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item cloned" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="owl-item cloned" style="width: 122.333px; margin-right: 10px;">
                                         <div class="item">
                                             <div class="phtot2">
-                                                <a class="themeGallery" href="assets/images/6786.jpg">
-                                                    <img src="assets/images/lazy.jpg" alt="PHOTO"></a>
+                                                <a class="themeGallery" href="{{ ('frontend/assets/images/lazy.jpg') }}">
+                                                    <img src="{{ ('frontend/assets/images/lazy.jpg') }}" alt="PHOTO"></a>
                                             </div>
                                         </div>
                                     </div>

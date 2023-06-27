@@ -118,6 +118,19 @@
 
                                         </div>
                                     </div>
+                                    <div class="form-group col-md-6 mb-3">
+
+                                        <div class="controls">
+                                            <label for="inputEmail4" class="form-label">Multi Image</label>
+                                            <input type="file"  name="multi_img[]" class="form-control"
+                                                multiple="" id="multiImg">
+
+                                            @error('multi_img')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                            <div class="row mb-3" id="preview_img"></div>
+                                        </div>
+                                    </div>
 
                                     <div class="form-group col-md-6 col-md-12 mb-3">
                                         <label for="inputEmail4" class="form-label">News Details</label>
@@ -169,6 +182,57 @@
                                     Changes</button>
 
                             </form>
+
+                           {{--Multi Image Portion Started--}}
+
+        <section class="content mt-5">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="box box-outline-info">
+                        <div class="box-header" style="border-radius: 5px">
+                            <h4 class="box-title"><strong>Multi Image Update</strong></h4>
+                        </div>
+                        <form method="post" action="{{route('update-multi-image')}}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row row-sm">
+                                @foreach($multiImgs as $img)
+                                    <div class="col-md-3">
+                                        <div class="card">
+                                            <img src="{{asset($img->photo_name)}}" class="card-img-top"
+                                                 style="height: 280px; width: 280px; margin-left: 10px; margin: auto">
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <a href="{{route('news.multiImg.delete',$img->id)}}"
+                                                       class="btn btn-sm btn-danger" id="delete"
+                                                       title="Delete Data"><i class="fa fa-trash"></i></a>
+                                                </h5>
+                                                <p class="card-text">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">Change Image <span
+                                                            class="text-danger">*</span></label>
+                                                    <input class="form-control" type="file"
+                                                           name="multi_img[{{$img->id}}]">
+                                                </div>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="text-xs-right">
+                                <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Image"
+                                       style="margin-left: 16px;">
+                            </div>
+                            <br><br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        {{--Multi Image Portion Ended--}}
 
                         </div> <!-- end card-body -->
                     </div> <!-- end card-->
