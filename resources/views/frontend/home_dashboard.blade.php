@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 
 <html lang="en-US">
-
+@php
+	$seo = App\Models\SeoSetting::find(1);
+@endphp
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -12,9 +14,10 @@
 
 	<link rel="shortcut icon" href="{{ asset('frontend/assets/images/favicon.gif') }}" type="image/x-icon">
 
-
-	<meta name="keywords" content="online newspaper, bangla news, news, bangla, newsportal">
-	<meta name="description" content="Popular News Paper of Bangladesh">
+    <meta name="title" content="{{ $seo->meta_title }}">
+    <meta name="author" content="{{ $seo->meta_author }}">
+	<meta name="keywords" content="{{ $seo->meta_keyword }}">
+	<meta name="description" content="{{ $seo->meta_description }}">
 
 	<link rel="stylesheet" href="{{ asset('frontend/assets/css/line-awesome.min.css') }}" />
 	<link rel="stylesheet" href="{{ asset('frontend/assets/css/headstyle.css') }}" />

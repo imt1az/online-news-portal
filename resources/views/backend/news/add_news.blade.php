@@ -83,7 +83,7 @@
                                     </div>
                                     {{-- Image --}}
                                     <div class="form-group col-md-6 mb-3">
-                                        <label class="form-label">Choose Image</label>
+                                        <label class="form-label">Thumbnail Image</label>
                                         <input type="file" id='image' name="image" class="form-control">
                                     </div>
 
@@ -104,21 +104,27 @@
                                     </div>
                                     <div class="form-group col-md-6 mb-3">
 
-                                        <div class="controls">
-                                            <label for="inputEmail4" class="form-label">Multi Image</label>
-                                            <input type="file"  name="multi_img[]" class="form-control"
-                                                multiple="" id="multiImg">
 
-                                            @error('multi_img')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                            <div class="row mb-3" id="preview_img"></div>
-                                        </div>
+                                        <label class="form-label">Multiple Image</label>
+                                        <input required type="file" name="multi_img[]" class="form-control" multiple=""
+                                            id="multiImg">
+
+
+                                        <div class="row mb-3" id="preview_img"></div>
+
                                     </div>
 
                                     <div class="form-group col-md-6 col-md-12 mb-3">
-                                        <label for="inputEmail4" class="form-label">News Details</label>
-                                        <textarea name="news_details"></textarea>
+                                        <label for="inputEmail4" class="form-label">News Details 1st Pera</label>
+                                        <textarea required name="news_details"></textarea>
+                                    </div>
+                                    <div class="form-group col-md-6 col-md-12 mb-3">
+                                        <label for="inputEmail4" class="form-label">News Details 2nd Pera</label>
+                                        <textarea required name="news_details2"></textarea>
+                                    </div>
+                                    <div class="form-group col-md-6 col-md-12 mb-3">
+                                        <label for="inputEmail4" class="form-label">News Details 3rd Pera</label>
+                                        <textarea required name="news_details3"></textarea>
                                     </div>
 
 
@@ -130,6 +136,13 @@
                                             <input class="form-check-input" type="checkbox" name="breaking_news"
                                                 value="1" id="customckeck1">
                                             <label class="form-check-label" for="customckeck1">Breaking News</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6 mb-3">
+                                        <div class="form-check mb-2 form-check-primary">
+                                            <input class="form-check-input" type="checkbox" name="special"
+                                                value="1" id="customckeck1">
+                                            <label class="form-check-label" for="customckeck1">Special News</label>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-6 mb-3">
@@ -184,9 +197,13 @@
                     news_title: {
                         required: true,
                     },
+                    multiImg: {
+                        required: true,
+                    },
                     image: {
                         required: true,
                     },
+                  
                     news_details: {
                         required: true,
                     }
@@ -200,9 +217,13 @@
                     news_title: {
                         required: 'Please Enter News Title',
                     },
+                    multiImg: {
+                        required: 'Please Select Thumbnail Photo Then Muultiple Image',
+                    },
                     image: {
                         required: 'Please Choose Image',
                     },
+                    
                     news_details: {
                         required: 'Please Enter News Details',
                     },
@@ -275,7 +296,7 @@
 
                     $.each(data, function(index, file) { //loop though each file
                         if (/(\.|\/)(gif|jpe?g|png)$/i.test(file
-                            .type)) { //check supported file type
+                                .type)) { //check supported file type
                             var fRead = new FileReader(); //new filereader
                             fRead.onload = (function(file) { //trigger function on successful read
                                 return function(e) {
@@ -283,7 +304,7 @@
                                             e.target.result).width(100)
                                         .height(80); //create image element
                                     $('#preview_img').append(
-                                    img); //append image to output element
+                                        img); //append image to output element
                                 };
                             })(file);
                             fRead.readAsDataURL(file); //URL representing the file's data.

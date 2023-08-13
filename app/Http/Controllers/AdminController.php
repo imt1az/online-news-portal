@@ -83,4 +83,91 @@ class AdminController extends Controller
 
      return back()->with('status', "Password Change Successfully");
      }
+
+     public function AllAdmin(){
+      $allAdmin = User::where('role','admin')->orderBy('id','ASC')->latest()->get();
+      return view('backend.admin.all_admin',compact('allAdmin'));
+     }
+
+     public function AddAdmin(){
+         return view('backend.admin.add_admin');
+     }
+     public function StoreAdmin(Request $request){
+      $user = new User();
+      $user->name = $request->name;
+      $user->username = $request->username;
+      $user->email  = $request->email;
+      $user->password = $request->password;
+      $user->phone = $request->phone;
+      $user->password = Hash::make($request->password);
+      $user->role = 'admin';
+      $user->status = 'inactive';
+      $user->save();
+
+      $notification = array(
+        'message' =>'Admin Added Successfully',
+        'alert-type' => 'success'
+       );
+
+       return redirect()->back()->with($notification);
+     }
+
+     public function EditAdmin($id){
+      $admin = User::findOrFail($id);
+
+      return view('backend.admin.edit_admin',compact('admin'));
+
+     }
+
+     public function UpdateAdmin(Request $request){
+      $id = $request->id;
+      $user = User::findOrFail($id);
+      $user->name = $request->name;
+      $user->username = $request->username;
+      $user->email  = $request->email;
+      
+      $user->phone = $request->phone;
+      
+      $user->role = 'admin';
+      $user->status = 'inactive';
+      $user->save();
+
+      $notification = array(
+        'message' =>'Admin Updated Successfully',
+        'alert-type' => 'success'
+       );
+
+       return redirect()->back()->with($notification);
+     }
+
+     public function DeleteAdmin($id){
+      User::findOrFail($id)->delete();
+
+      $notification = array(
+        'message' =>'Admin Deleted Successfully',
+        'alert-type' => 'success'
+      );
+      
+      return redirect()->back()->with($notification);
+     }
+
+     public function InactiveAdmin($id){
+        User::findOrFail($id)->update(['status' => 'inactive']);
+        $notification = array(
+          'message' =>'Admin Is InActive Successfully',
+          'alert-type' => 'success'
+        );
+        
+        return redirect()->back()->with($notification);
+     }
+
+     public function ActiveAdmin($id){
+      User::findOrFail($id)->update(['status' => 'active']);
+        $notification = array(
+          'message' =>'Admin Is Active Successfully',
+          'alert-type' => 'success'
+        );
+        
+        return redirect()->back()->with($notification);
+     }
 }

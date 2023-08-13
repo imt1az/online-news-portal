@@ -98,7 +98,7 @@
                                     </div>
                                     {{-- Image --}}
                                     <div class="form-group col-md-6 mb-3">
-                                        <label class="form-label">Choose Image</label>
+                                        <label class="form-label">Thumbnail Image</label>
                                         <input type="file" id='image' name="image" class="form-control">
                                     </div>
 
@@ -136,6 +136,14 @@
                                         <label for="inputEmail4" class="form-label">News Details</label>
                                         <textarea name="news_details">{!! $news->news_details !!}</textarea>
                                     </div>
+                                    <div class="form-group col-md-6 col-md-12 mb-3">
+                                        <label for="inputEmail5" class="form-label">News Details2</label>
+                                        <textarea name="news_details2">{!! $news->news_details2 !!}</textarea>
+                                    </div>
+                                    <div class="form-group col-md-6 col-md-12 mb-3">
+                                        <label for="inputEmail6" class="form-label">News Details3</label>
+                                        <textarea name="news_details3">{!! $news->news_details3 !!}</textarea>
+                                    </div>
 
 
                                 </div>
@@ -147,6 +155,14 @@
                                                 value="1" {{ $news->breaking_news == 1 ? 'checked' : '' }}
                                                 id="customckeck1">
                                             <label class="form-check-label" for="customckeck1">Breaking News</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6 mb-3">
+                                        <div class="form-check mb-2 form-check-primary">
+                                            <input class="form-check-input" type="checkbox" name="special"
+                                                value="1" {{ $news->special == 1 ? 'checked' : '' }}
+                                                id="customckeck1">
+                                            <label class="form-check-label" for="customckeck1">Special News</label>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-6 mb-3">

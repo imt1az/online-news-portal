@@ -22,14 +22,18 @@ return new class extends Migration
             $table->string('news_title_slug');
             $table->string('image');
             $table->text('news_details');
+            $table->text('news_details2')->nullable();
+            $table->text('news_details3')->nullable();
             $table->text('tags');
             $table->integer('breaking_news')->nullable();
             $table->integer('top_slider')->nullable();
             $table->integer('first_section_three')->nullable();
             $table->integer('first_section_nine')->nullable();
+            $table->integer('special')->nullable();
             $table->string('post_date')->nullable();
             $table->string('post_month');
             $table->integer('status')->default(1);
+            $table->integer('view_count')->default(0);
             $table->timestamps();
         });
     }

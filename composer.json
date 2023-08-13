@@ -8,10 +8,12 @@
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
+        "jorenvanhocht/laravel-share": "^4.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "s1k3/bangla-date": "^1.07"
+        "s1k3/bangla-date": "^1.07",
+        "spatie/laravel-permission": "^5.10"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

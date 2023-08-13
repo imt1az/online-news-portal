@@ -39,10 +39,11 @@
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8">
-                    <div class="banner">
-                        <a href=" " target="_blank">
+                    <div class="banner" >
+                  
+                        {{-- <a href=" " target="_blank">
 
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>
@@ -66,16 +67,14 @@
                     </a>
 
                     @php
-                        $categories = App\Models\Category::orderBy('id')
-                            ->limit(9)
-                            ->get();
+                        $categories = App\Models\Category::orderBy('id')->get();
                     @endphp
 
                     <ul id="menu-main-menu" class="menu">
                         <li id="menu-item-89"
                             class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-89">
                             <a href="http://127.0.0.1:8000/" aria-current="page"> <i class="fa-solid fa-house-user"></i>
-                                প্রচ্ছদ</a>
+                                </a>
                         </li>
 
 
@@ -84,14 +83,14 @@
                         @php
                             $subcategories = App\Models\SubCategory::where('category_id',$item->id)->orderBy('id')->get();
                         @endphp
-                            <li id="menu-item-291"
+                            <li  id="menu-item-291" style="margin-left: 5px;"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-291 has-sub">
-                                <a class="f-22" href=" ">{{ $item->category_name }}</a>
+                                <a style="" href="{{ url('news/category/'.$item->id.'/'.$item->category_slug) }}">{{ $item->category_name }}</a>
                                 <ul class="sub-menu">
                                     @foreach ($subcategories as $sub)
                                     <li id="menu-item-294"
                                     class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-294">
-                                    <a href=" ">{{ $sub->subcategory_name }}</a>
+                                    <a href="{{ url('news/subCategory/'.$sub->id.'/'.$sub->subcategory_slug) }}">{{ $sub->subcategory_name }}</a>
                                 </li>
                                     @endforeach
                                     
@@ -102,10 +101,17 @@
                             </li>
                         @endforeach
 
+                        <li id="menu-item-291"
+                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-291 has-sub">
+                        <a class="" href="{{ url('news/category/gallery') }}">গ্যালারি</a>
+                       
+                       
+                    </li>
+
 
                         {{-- <li id="menu-item-277"
                             class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-277"><a
-                                href=" ">Archive</a>
+                                href=" " style="">Archive</a>
                         </li> --}}
 
 

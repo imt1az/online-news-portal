@@ -42,12 +42,15 @@ class NewsPostController extends Controller
             'news_title_slug' => strtolower(str_replace(' ', '-', $request->news_title)),
 
             'news_details' => $request->news_details,
+            'news_details2' => $request->news_details2,
+            'news_details3' => $request->news_details3,
             'tags' => $request->tags,
 
             'breaking_news' => $request->breaking_news,
             'top_slider' => $request->top_slider,
             'first_section_three' => $request->first_section_three,
             'first_section_nine' => $request->first_section_nine,
+            'special' => $request->special,
 
             'post_date' => date('d-m-Y'),
             'post_month' => date('F'),
@@ -109,12 +112,15 @@ class NewsPostController extends Controller
                 'news_title_slug' => strtolower(str_replace(' ', '-', $request->news_title)),
 
                 'news_details' => $request->news_details,
+                'news_details2' => $request->news_details2,
+                'news_details3' => $request->news_details3,
                 'tags' => $request->tags,
 
                 'breaking_news' => $request->breaking_news,
                 'top_slider' => $request->top_slider,
                 'first_section_three' => $request->first_section_three,
                 'first_section_nine' => $request->first_section_nine,
+                'special' => $request->special,
 
                 'post_date' => date('d-m-Y'),
                 'post_month' => date('F'),
@@ -128,8 +134,7 @@ class NewsPostController extends Controller
             );
 
             return redirect()->route('all.news.post')->with($notification);
-        } 
-        else {
+        } else {
             NewsPost::findOrFail($id)->update([
 
                 'category_id' => $request->category_id,
@@ -139,12 +144,15 @@ class NewsPostController extends Controller
                 'news_title_slug' => strtolower(str_replace(' ', '-', $request->news_title)),
 
                 'news_details' => $request->news_details,
+                'news_details2' => $request->news_details2,
+                'news_details3' => $request->news_details3,
                 'tags' => $request->tags,
 
                 'breaking_news' => $request->breaking_news,
                 'top_slider' => $request->top_slider,
                 'first_section_three' => $request->first_section_three,
                 'first_section_nine' => $request->first_section_nine,
+                'special' => $request->special,
 
                 'post_date' => date('d-m-Y'),
                 'post_month' => date('F'),
@@ -153,18 +161,18 @@ class NewsPostController extends Controller
 
             ]);
 
-            if($request->file('multi_img')){
+            if ($request->file('multi_img')) {
                 foreach ($request->file('multi_img') as $img) {
                     $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
                     Image::make($img)->resize(784, 436)->save('upload/news/multi-image/' . $make_name);
                     $uploadPath = 'upload/news/multi-image/' . $make_name;
-        
+
                     MultiImg::insert([
-        
+
                         'news_id' => $id,
                         'photo_name' => $uploadPath,
                         'created_at' => Carbon::now(),
-        
+
                     ]);
                 }
             }
@@ -187,7 +195,7 @@ class NewsPostController extends Controller
         NewsPost::findOrFail($id)->delete();
         $notification = array(
             'message' => 'News Added Successfull',
-            'alert-type' => 'success'
+            'alert-type' => 'danger'
         );
 
         return redirect()->back()->with($notification);
@@ -249,6 +257,32 @@ class NewsPostController extends Controller
         NewsPost::findOrFail($id)->update(['status' => 1]);
         $notification = array(
             'message' => 'News Is Active',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function NonSpecialNews($id)
+    {
+        
+            NewsPost::findOrFail($id)->update(['special' => 0]);
+      
+        $notification = array(
+            'message' => 'News Is Being NonSpecial',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+    public function SpecialNews($id)
+    {
+     
+            NewsPost::findOrFail($id)->update(['special' => 1]);
+      
+        // NewsPost::findOrFail($id)->update(['special'=>1]);
+        $notification = array(
+            'message' => 'News Is Going To Be Special',
             'alert-type' => 'info'
         );
 

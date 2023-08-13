@@ -1,4 +1,6 @@
-
+news-font{
+	font-size: 16px;
+}
 
 .themesbazar_header {
 	background: #FFFFFF;
@@ -123,7 +125,7 @@
 
 .tab_hadding a{
 	color: #000000 !important;
-	font-size: 16px !important;
+	font-size: 14px !important;
     font-weight:400;
 	display: inherit;
     text-decoration:none;
@@ -148,13 +150,13 @@
 
 .secOne_smallTitle a {
 	color: #000000;
-	font-size: 16px;	
+	font-size: 14px;	
 	display: inline-block;
 	transition: .5s all;
 }
 
 .section-two {
-	background: #212121;
+	background: white;
 	margin: 10px 0 0;
 	padding: 28px 0 32px;
 }
@@ -188,7 +190,7 @@
 }
 
 .secFive-title a {
-	color: #000000;
+	color: #ffffff;
 	font-size: 17px;
 	display: inline-block;
 	transition: .5s all;
@@ -249,7 +251,7 @@
 
 
 
-</style> <style>
+
 
 body {
     font-size: 16px !important;
@@ -298,7 +300,7 @@ a:hover {
 }
 
 
-.stellarnav { position: relative; width: 100%; z-index: 9900; line-height: normal; font-weight: normal; font-size: 18px;}
+.stellarnav { position: relative; width: 100%; z-index: 9900; line-height: normal; font-weight: normal; font-size: 0px;}
 
 .stellarnav.dark .active {
 	background: #012E48;
@@ -332,7 +334,7 @@ a:hover {
 }
 
 .stellarnav li a {
-	padding : 15px 10px 15px 10px;
+	padding : 10px 10px 15px 10px;
 	display: block;
 	text-decoration: none;
 	color: #000;
@@ -403,7 +405,7 @@ a:hover {
  
  
  .related-title a {
-	font-size: 20px;
+	font-size: 16px;
 	color: #000000;
 	text-decoration: none;
     transition: .5s all;
@@ -466,7 +468,7 @@ a:hover {
 }
 
 .archiveTab_hadding a {
-	font-size:18px !important;
+	font-size:15px !important;
 	font-weight: 400;
 	line-height: auto;
 	color: #000000 !important;
@@ -485,7 +487,7 @@ a:hover {
 }
 
 .archive1-title2 a {
-	font-size: 20px !important;
+	font-size: 15px !important;
 	color: #000000 !important;
 	text-decoration: none;
 	display : inline-block;

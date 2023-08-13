@@ -1,13 +1,12 @@
 @extends('admin.admin_dashboard')
 @section('admin')
-
-@php
-    $activeNews = App\Models\NewsPost::where('status',1)->get();
-    $breakingNews = App\Models\NewsPost::where('breaking_news',1)->get();
-    $topSlider = App\Models\NewsPost::where('top_slider',1)->get();
-    $first_section_three = App\Models\NewsPost::where('first_section_three',1)->get();
-    $first_section_nine = App\Models\NewsPost::where('first_section_nine',1)->get();
-@endphp
+    @php
+        $activeNews = App\Models\NewsPost::where('status', 1)->get();
+        $breakingNews = App\Models\NewsPost::where('breaking_news', 1)->get();
+        $topSlider = App\Models\NewsPost::where('top_slider', 1)->get();
+        $first_section_three = App\Models\NewsPost::where('first_section_three', 1)->get();
+        $first_section_nine = App\Models\NewsPost::where('first_section_nine', 1)->get();
+    @endphp
     <div class="content ">
 
         <!-- Start Content-->
@@ -23,7 +22,7 @@
                                     Post</a>
                             </ol>
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
@@ -41,7 +40,8 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-end">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ count($allNews) }} </span></h3>
+                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ count($allNews) }}
+                                            </span></h3>
                                         <p class="text-muted mb-1 text-truncate">Total News</p>
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@
                         </div>
                     </div> <!-- end widget-rounded-circle-->
                 </div> <!-- end col-->
-    
+
                 <div class="col-md-4 col-xl-2">
                     <div class="widget-rounded-circle card">
                         <div class="card-body">
@@ -61,7 +61,8 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-end">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ count($activeNews) }}</span></h3>
+                                        <h3 class="text-dark mt-1"><span
+                                                data-plugin="counterup">{{ count($activeNews) }}</span></h3>
                                         <p class="text-muted mb-1 text-truncate">Active News</p>
                                     </div>
                                 </div>
@@ -69,7 +70,7 @@
                         </div>
                     </div> <!-- end widget-rounded-circle-->
                 </div> <!-- end col-->
-    
+
                 <div class="col-md-4 col-xl-2">
                     <div class="widget-rounded-circle card">
                         <div class="card-body">
@@ -81,7 +82,8 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-end">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ count($topSlider) }}</span></h3>
+                                        <h3 class="text-dark mt-1"><span
+                                                data-plugin="counterup">{{ count($topSlider) }}</span></h3>
                                         <p class="text-muted mb-1 text-truncate">Top Slider</p>
                                     </div>
                                 </div>
@@ -89,7 +91,7 @@
                         </div>
                     </div> <!-- end widget-rounded-circle-->
                 </div> <!-- end col-->
-    
+
                 <div class="col-md-4 col-xl-2">
                     <div class="widget-rounded-circle card">
                         <div class="card-body">
@@ -101,7 +103,8 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-end">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ count($breakingNews) }}</span></h3>
+                                        <h3 class="text-dark mt-1"><span
+                                                data-plugin="counterup">{{ count($breakingNews) }}</span></h3>
                                         <p class="text-muted mb-1 text-truncate">Breaking News</p>
                                     </div>
                                 </div>
@@ -120,7 +123,8 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-end">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ count($first_section_three) }}</span></h3>
+                                        <h3 class="text-dark mt-1"><span
+                                                data-plugin="counterup">{{ count($first_section_three) }}</span></h3>
                                         <p class="text-muted mb-1 text-truncate">Section 3</p>
                                     </div>
                                 </div>
@@ -139,7 +143,8 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="text-end">
-                                        <h3 class="text-dark mt-1"><span data-plugin="counterup">{{ count($first_section_three) }}</span></h3>
+                                        <h3 class="text-dark mt-1"><span
+                                                data-plugin="counterup">{{ count($first_section_three) }}</span></h3>
                                         <p class="text-muted mb-1 text-truncate">Section 9</p>
                                     </div>
                                 </div>
@@ -147,7 +152,7 @@
                         </div>
                     </div> <!-- end widget-rounded-circle-->
                 </div> <!-- end col-->
-            
+
             </div>
             <!-- end row-->
 
@@ -179,19 +184,21 @@
                                             <td>{{ $key + 1 }}</td>
                                             <td><img src="{{ asset($item->image) }} " style="width: :50px; height:50px;">
                                             </td>
-                                            <td>{{ Str::limit($item->news_title,60) }}</td>
-                                            <td>{{ $item['category']['category_name'] }}</td>
-                                            @if ($item->subcategory_id == Null)
-                                               <td> </td>
+                                            <td>{{ Str::limit($item->news_title, 20) }}</td>
+                                            @if ($item->category_id == null)
+                                                <td> </td>
+                                            @else
+                                                <td>{{ $item['category']['category_name'] }}</td>
+                                            @endif
+                                            {{-- <td>{{ $item['category']['category_name'] }}</td> --}}
+                                            @if ($item->subcategory_id == null)
+                                                <td> </td>
                                             @else
                                                 <td>{{ $item['subcategory']['subcategory_name'] }}</td>
-                                            
-                                         
-                                                
                                             @endif
-                                            
+
                                             <td>{{ $item['user']['name'] }}</td>
-                                            <td>{{ $item->post_date  }}</td>
+                                            <td>{{ $item->post_date }}</td>
 
 
                                             <td>
@@ -206,20 +213,39 @@
 
 
                                             <td>
-                                                <a href="{{ route('edit.newspost',$item->id) }}"
+                                                <a href="{{ route('edit.newspost', $item->id) }}"
                                                     class="btn btn-primary rounded-pill waves-effect waves-light">Edit</a>
 
-                                                <a href="{{ route('delete.newspost',$item->id) }}"
+
+
+                                                <a href="{{ route('delete.newspost', $item->id) }}"
                                                     class="btn btn-danger rounded-pill waves-effect waves-light"
                                                     id="delete">Delete</a>
 
+                                                    @if ($item->special == 1)
+                                                    <a href="{{ route('nonspecial.newspost', $item->id) }}"
+                                                        class="btn rounded-pill waves-effect "><i
+                                                            class='fas fa-bell'
+                                                            style='font-size:20px;color:green'></i></a>
+                                                    
+                                                    @else
+
+                                                         <a href="{{ route('special.newspost', $item->id) }}"
+                                                    class="btn rounded-pill waves-effect"><i
+                                                        class='fas fa-bell-slash'
+                                                        style='font-size:20px;color:red'></i></a>
+                                                    @endif
+
+                                               
+
+
 
                                                 @if ($item->status == 1)
-                                                    <a href="{{ route('inactive.news.post',$item->id) }}"
+                                                    <a href="{{ route('inactive.news.post', $item->id) }}"
                                                         class="btn btn-primary rounded-pill waves-effect waves-light"
                                                         title="Inactive"><i class="fas fa-thumbs-up"></i></a>
                                                 @else
-                                                    <a href="{{ route('active.news.post',$item->id) }}"
+                                                    <a href="{{ route('active.news.post', $item->id) }}"
                                                         class="btn btn-primary rounded-pill waves-effect waves-light"
                                                         title="Active"><i class="fas fa-thumbs-down"></i></i></a>
                                                 @endif
